@@ -9,7 +9,7 @@ const Course = mongoose.model('Course');
 //Router Controller for READ request
 router.get('/', (req, res) => {
     res.render("course/courseAddEdit", {
-        viewTitle: "Insert a New Course for Edureka"
+        viewTitle: "Insert a New Course"
     });
 });
 

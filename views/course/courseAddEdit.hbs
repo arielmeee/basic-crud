@@ -1,13 +1,17 @@
 <!-- Obtaining value from the course controller -->
 
-<h3>{{viewTitle}}</h3>
+<div id="add-course-header" style="height: 300px;">
+    <h3>{{viewTitle}}</h3>
+</div>
+    
+</img>
 <form action="/course" method="POST">
     <input type="hidden" name="_id" value="{{course._id}}">
 
     <div class="form-group">
         <label>Course Name</label>
         <input type="text" maxlength="100" class="form-control" name="courseName" placeholder="Course Name"
-            value="{{course.courseName}}">
+            value="{{course.courseName}}" required>
 
         <div class="text-danger">
             {{course.courseNameError}}</div>

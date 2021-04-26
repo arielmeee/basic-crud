@@ -7,7 +7,6 @@ const path = require('path');
 const exphb = require('express-handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const Handlebars = require('handlebars');
-const bodyparser = require('body-parser');
 
 const courseController = require('./controller/courseController');
 
@@ -18,7 +17,7 @@ app.use(express.urlencoded({
 
 //Create a welcome message and direct them to the main page
 app.get('/', (req, res) => {
-    res.send('<h2 style = "font-family: Malgun Gothic; color: midnightblue "> Welcome to Edureka Node.js MongoDB Tutorial!!</h2>Click Here to go to < b > <a href="/course">Course Page</a> </b > ');
+    res.redirect('/course');
 });
 
 app.use(express.json());
