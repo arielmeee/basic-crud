@@ -10,23 +10,22 @@
             border-radius: 15px; background-color: #fff; margin-top: 15px; padding:20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
         #course-list-header {
-            background: url(https://i.postimg.cc/Mp0xBqPs/book.png);
+            background: url(https://i.postimg.cc/Mp0xBqPs/book.png) no-repeat; background-position: left top; background-size: 130% 200%;
         }
         #add-course-header {
-            background: url(https://i.postimg.cc/rmT31rH3/writing.png); background-size: cover !important;
+            background: url(https://i.postimg.cc/rmT31rH3/writing.png); background-size: cover !important; margin-bottom: 20px;
         }
     </style>
 </head>
 
 <body style="height: 800px;">
 
-    <div class="row">
-        <div id="body" class="col-md-6 offset-md-3">
-            <!-- retrieving HTML String from the child Views -->
-            {{{body}}}
+        <div class="row">
+            <div id="body" class="col-lg-6 offset-lg-3">
+                <!-- retrieving HTML String from the child Views -->
+                {{{body}}}
+            </div>
         </div>
-    </div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

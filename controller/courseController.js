@@ -1,8 +1,10 @@
 //Import the dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+
 //Creating a Router
 var router = express.Router();
+
 //Link
 const Course = mongoose.model('Course');
 

@@ -1,13 +1,12 @@
 <div id="course-list-header" style="height: 300px;">
-    {{!-- <img src="https://i.postimg.cc/Mp0xBqPs/book.png" alt="" width="100%"> --}}
     <a class="btn btn-secondary" href="/course"><i class="fa fa-plus"></i> Create New</a>
-    
     <h3 align="center">Course List</h3>
 </div>
+
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Course Name</th>
+            <th style="padding-top: 20px;">Course Name</th>
             <th>Course Id</th>
             <th>Course Duration(Hrs)</th>
             <th>Course Fee(PHP)</th>
@@ -22,7 +21,7 @@
             <td>{{this.courseDuration}}</td>
             <td>{{this.courseFee}}</td>
             <td>
-                <a href="/course/{{this._id}}"> Edit </a>
+                <a href="/course/{{this._id}}"> Edit </a><br>
                 <a href="/course/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');">
                     Delete </a>
             </td>
