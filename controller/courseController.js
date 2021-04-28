@@ -8,8 +8,16 @@ var router = express.Router();
 //Link
 const Course = mongoose.model('Course');
 
+const isAuth = (req, res, next) => {
+    if(req.session.isAuth) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
+
 //Router Controller for READ request
-router.get('/', (req, res) => {
+router.get('/', isAuth, (req, res) => {
     res.render("course/courseAddEdit", {
         viewTitle: "Insert a New Course"
     });
@@ -58,7 +66,7 @@ function updateIntoMongoDB(req, res) {
 }
 
 //Router to retrieve the complete list of available courses
-router.get('/list', (req, res) => {
+router.get('/list', isAuth, (req, res) => {
     Course.find((err, docs) => {
         if (!err) {
             res.render("course/list", {
@@ -85,7 +93,7 @@ function handleValidationError(err, body) {
 }
 
 //Router to update a course using it's ID
-router.get('/:id', (req, res) => {
+router.get('/:id', isAuth, (req, res) => {
     Course.findById(req.params.id, (err, doc) => {
         if (!err) {
             res.render("course/courseAddEdit", {
@@ -97,13 +105,21 @@ router.get('/:id', (req, res) => {
 });
 
 //Router Controller for DELETE request
-router.get('/delete/:id', (req, res) => {
+router.get('/delete/:id', isAuth, (req, res) => {
     Course.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
             res.redirect('/course/list');
         }
         else { console.log('Failed to Delete Course Details: ' + err); }
     });
+});
+
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err) throw err;
+        res.redirect('/');
+    });
+    console.log("Logout entered");
 });
 
 module.exports = router;

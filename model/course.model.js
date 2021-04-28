@@ -4,16 +4,19 @@ const mongoose = require('mongoose');
 var courseSchema = new mongoose.Schema({
     courseName: {
         type: String,
-        required: 'This field is required!'
+        required: true
     },
     courseId: {
-        type: String
+        type: Number,
+        required: true
     },
     courseDuration: {
-        type: String
+        type: Number,
+        required: true
     },
     courseFee: {
-        type: String
+        type: Number,
+        required: true
     }
 });
 

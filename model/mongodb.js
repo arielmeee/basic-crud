@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/Course-Management', { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb://localhost:27017/Course-Management', { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false }, (err) => {
     if (!err) {
         console.log('Successfully Established Connection with MongoDB')
     }
@@ -11,3 +15,4 @@ mongoose.connect('mongodb://localhost:27017/Course-Management', { useNewUrlParse
 
 //Connecting Node and MongoDB
 require('./course.model');
+require('./user.model');
