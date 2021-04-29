@@ -119,7 +119,7 @@ router.post('/logout', (req, res) => {
         if(err) throw err;
         res.redirect('/');
     });
-    console.log("Logout entered");
+    console.log("Logout");
 });
 
 module.exports = router;

@@ -17,7 +17,7 @@ router.post('/', async(req, res) => {
     const user = await UserModel.findOne({email}) // Query DB if user exist
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!user) { return res.redirect('/') }; // Check if email didnt exist in DB
+    if(!user) { return res.redirect('/'); }; // Check if email didnt exist in DB
     if(!isMatch) { return res.redirect('/') }; // Check if password didnt exist in DB
 
     req.session.isAuth = true; // Starting session cookie
