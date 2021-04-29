@@ -1,6 +1,6 @@
 require('./model/mongodb');
 
-//Import the necessary packages
+// Import the necessary packages
 const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
@@ -28,20 +28,20 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Configuring Express middleware for the handlebars
+// Configuring Express middleware for the handlebars
 app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', exphb({ handlebars: allowInsecurePrototypeAccess(Handlebars), extname: 'hbs', defaultLayout: 'mainLayout', layoutDir: __dirname + 'views/layouts/' }));
 app.set('view engine', 'hbs');
 
-//Establish the server connection
-//PORT ENVIRONMENT VARIABLE
+// Establish the server connection
+// PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
 
-//Set authentication controller
+// Set authentication controller
 const authController = require('./controller/authController');
 app.use('/', authController);
 
-//Set the Controller path which will be responding the user actions
+// Set the Controller path which will be responding the user actions
 const courseController = require('./controller/courseController');
 app.use('/course', courseController);

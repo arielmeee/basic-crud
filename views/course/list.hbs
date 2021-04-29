@@ -1,4 +1,6 @@
-<div id="course-list-header" style="height: 300px;">
+<div id="course-list-header" style="height: 300px; position:relative;">
+    <div style="position: absolute; width: 100%;">{{> messages}}</div>
+    
     <a class="btn btn-secondary" href="/course">Create New</a>
     <form action="/course/logout" method="post" style="float: right;">
         <button class="btn btn-warning">Logout</button>

@@ -8,6 +8,7 @@ var router = express.Router();
 //Link
 const Course = mongoose.model('Course');
 
+//Middleware for authentication
 const isAuth = (req, res, next) => {
     if(req.session.isAuth) {
         next();
@@ -40,7 +41,7 @@ function insertIntoMongoDB(req, res) {
     course.courseFee = req.body.courseFee;
     course.save((err, doc) => {
         if (!err)
-            res.redirect('course/list');
+            res.redirect('course/list?message=Course added successfully! &alertType=success');
         else
             console.log('Error during record insertion : ' + err);
     });
@@ -70,7 +71,9 @@ router.get('/list', isAuth, (req, res) => {
     Course.find((err, docs) => {
         if (!err) {
             res.render("course/list", {
-                list: docs
+                list: docs,
+                message: req.query.message,
+                alertType: req.query.alertType
             });
         }
         else {
@@ -108,7 +111,7 @@ router.get('/:id', isAuth, (req, res) => {
 router.get('/delete/:id', isAuth, (req, res) => {
     Course.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/course/list');
+            res.redirect('/course/list?message=Course deleted! &alertType=success');
         }
         else { console.log('Failed to Delete Course Details: ' + err); }
     });
@@ -117,7 +120,7 @@ router.get('/delete/:id', isAuth, (req, res) => {
 router.post('/logout', (req, res) => {
     req.session.destroy((err) => {
         if(err) throw err;
-        res.redirect('/');
+        res.redirect('/?message=Sign out successfully! &alertType=success');
     });
     console.log("Logout");
 });
