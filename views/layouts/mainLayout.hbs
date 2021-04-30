@@ -5,21 +5,23 @@
     <title>Course Management</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
+        body { background: #6c63ff; overflow-x: hidden; overflow-y: scroll;}
         #body {
-            border-radius: 15px; background-color: #fff; margin-top: 15px; padding:20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin: auto; border-radius: 15px; background-color: #fff; margin-top: 15px; padding:20px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
         }
         #course-list-header {
             background: url(https://i.postimg.cc/Mp0xBqPs/book.png) no-repeat; background-position: left top; background-size: 130% 200%;
         }
         #add-course-header {
-            background: url(https://i.postimg.cc/rmT31rH3/writing.png); background-size: cover !important; margin-bottom: 20px;
+            background: url(https://i.postimg.cc/sXBNXP2G/Idea.png) no-repeat center; background-size: auto; margin-bottom: 20px; border-radius: 0px 150px 0px;
         }
         #signin-header {
-            background: url(https://i.postimg.cc/505zXwLS/authentication.png) no-repeat center; background-size: contain;
+            background: url(https://i.postimg.cc/6q0gsjPn/register.png) no-repeat; background-size: cover;
         }
         #signup-header {
-            background: url(https://i.postimg.cc/6p1sP6zr/signup.png) no-repeat center; background-size: contain;
+            background: url(https://i.postimg.cc/85FhWtMD/welcome.png) no-repeat center; background-size: cover;
         }
     </style>
 </head>
@@ -27,7 +29,7 @@
 <body style="height: 800px;">
 
         <div class="row">
-            <div id="body" class="col-lg-6 offset-lg-3">
+            <div id="body" class="col-md-6">
                 <!-- retrieving HTML String from the child Views -->
                 {{{body}}}
             </div>

@@ -1,19 +1,75 @@
 <div id="signup-header" style="height: 300px;">
     {{> messages}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert" style="display: none;">
+        Password don't match!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </div>
 
-<form action="/signup" method="POST">
+<form action="/signup" method="POST" onsubmit="return validate()">
     <div class="form-group mx-sm-5 mb-2">
         <label for="Email address">Email address</label>
-        <input type="email" class="form-control"  aria-describedby="emailHelp" name="email" required>
-    </div>
-    <div class="form-group mx-sm-5 mb-2">
-        <label for="Password">Password</label>
-        <input type="password" class="form-control" name="password" required>
-    </div>
-    <div style="text-align: center; margin-top: 15px">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        
+        <input type="email" class="form-control" aria-describedby="emailHelp" name="email" required>
     </div>
 
+    <div class="form-group mx-sm-5 mb-2">
+
+        <label for="Password">Password</label>
+        <div class="input-group">
+            <input type="password" class="form-control password" name="password" id="password" required>
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa fa-eye toggle-password" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group mx-sm-5 mb-2">
+
+        <label for="Password">Verify password</label>
+        <div class="input-group">
+            <input type="password" class="form-control password" id="password2" required>
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa fa-eye toggle-password" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 15px">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
+
+<script>
+    // Validating passwords
+    var pw = document.getElementsByClassName('password');
+    function validate() {
+        if (pw[0].value != pw[1].value) {
+            document.getElementById('alert').style.display = 'block';
+            return false;
+        }
+    };
+
+    // Adding toggle password visibility
+    var toggle_pw = document.getElementsByClassName('toggle-password');
+    for (let index = 0; index < toggle_pw.length; index++) {
+        toggle_pw[index].addEventListener('click', function () {
+            if (pw[index].type == 'password') {
+                pw[index].type = 'text';
+                toggle_pw[index].classList.remove('fa-eye');
+                toggle_pw[index].classList.add('fa-eye-slash');
+            } else {
+                pw[index].type = 'password';
+                toggle_pw[index].classList.remove('fa-eye-slash');
+                toggle_pw[index].classList.add('fa-eye');
+            }
+        });
+    }
+</script>
