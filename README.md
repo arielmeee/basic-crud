@@ -1,1 +1,4 @@
-# basic-crud
+# Installation
+npm install
+# Usage
+node app.js
