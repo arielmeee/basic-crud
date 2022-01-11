@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+// Import models
+require('./course.model');
+require('./user.model');
 
 mongoose.connect('mongodb://localhost:27017/Course-Management', { 
     useNewUrlParser: true,
@@ -12,7 +15,3 @@ mongoose.connect('mongodb://localhost:27017/Course-Management', {
         console.log('Failed to Establish Connection with MongoDB with Error: ' + err)
     }
 });
-
-//Connecting Node and MongoDB
-require('./course.model');
-require('./user.model');

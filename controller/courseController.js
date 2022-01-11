@@ -8,17 +8,17 @@ var router = express.Router();
 //Link
 const Course = mongoose.model('Course');
 
-//Middleware for authentication
-const isAuth = (req, res, next) => {
-    if(req.session.isAuth) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
+// //Middleware for authentication
+// const isAuth = (req, res, next) => {
+//     if(req.session.isAuth) {
+//         next();
+//     } else {
+//         res.redirect('/');
+//     }
+// }
 
 //Router Controller for READ request
-router.get('/', isAuth, (req, res) => {
+router.get('/', (req, res) => {
     res.render("course/courseAddEdit", {
         viewTitle: "Insert a New Course"
     });
@@ -67,7 +67,7 @@ function updateIntoMongoDB(req, res) {
 }
 
 //Router to retrieve the complete list of available courses
-router.get('/list', isAuth, (req, res) => {
+router.get('/list', (req, res) => {
     Course.find((err, docs) => {
         if (!err) {
             res.render("course/list", {
@@ -95,8 +95,8 @@ function handleValidationError(err, body) {
     }
 }
 
-//Router to update a course using it's ID
-router.get('/:id', isAuth, (req, res) => {
+//Router to update a course using its ID
+router.get('/:id', (req, res) => {
     Course.findById(req.params.id, (err, doc) => {
         if (!err) {
             res.render("course/courseAddEdit", {
@@ -108,7 +108,7 @@ router.get('/:id', isAuth, (req, res) => {
 });
 
 //Router Controller for DELETE request
-router.get('/delete/:id', isAuth, (req, res) => {
+router.get('/delete/:id', (req, res) => {
     Course.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
             res.redirect('/course/list?message=Course deleted! &alertType=success');

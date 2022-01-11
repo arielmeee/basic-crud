@@ -28,10 +28,12 @@ router.post('/', async(req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         // Check if password didnt exist in DB
         if(!isMatch) { return res.redirect('/?message=Invalid password! &alertType=danger'); }; 
-
-        req.session.isAuth = true; // Starting session cookie
+        
+        // Starting session cookie
+        req.session.isAuth = true;
         console.log("\nSession ID = ".concat(req.session.id));
         
+        // Login the user
         res.redirect('/course'); 
     } catch (error) {
         console.log(error);

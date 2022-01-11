@@ -1,14 +1,13 @@
 require('./model/mongodb');
 
 // Import the necessary packages
-const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
 const mongoDbSession = require('connect-mongodb-session')(session)
 var app = express();
 const path = require('path');
 const exphb = require('express-handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const Handlebars = require('handlebars');
 
 // Initializing session to store inside DB
@@ -30,13 +29,21 @@ app.use(express.json());
 
 // Configuring Express middleware for the handlebars
 app.set('views', path.join(__dirname, '/views/'));
-app.engine('hbs', exphb({ handlebars: allowInsecurePrototypeAccess(Handlebars), extname: 'hbs', defaultLayout: 'mainLayout', layoutDir: __dirname + 'views/layouts/' }));
+app.engine('hbs', exphb({
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    extname: 'hbs', defaultLayout: 'mainLayout',
+    layoutDir: __dirname + 'views/layouts/'
+}));
 app.set('view engine', 'hbs');
 
-// Establish the server connection
-// PORT ENVIRONMENT VARIABLE
-const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`Listening on port ${port}..`));
+//Middleware for authentication
+const isAuth = (req, res, next) => {
+    if (req.session.isAuth) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
 
 // Set authentication controller
 const authController = require('./controller/authController');
@@ -44,4 +51,8 @@ app.use('/', authController);
 
 // Set the Controller path which will be responding the user actions
 const courseController = require('./controller/courseController');
-app.use('/course', courseController);
+app.use('/course', isAuth, courseController);
+
+// Establish the server connection
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log(`Listening on port ${port}..`));

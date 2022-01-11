@@ -2,7 +2,7 @@
     {{> messages}}
     <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert" style="display: none;">
         Password don't match!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button type="button" class="close" id="close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -50,12 +50,18 @@
 <script>
     // Validating passwords
     var pw = document.getElementsByClassName('password');
+    var msg = document.getElementById('alert');
     function validate() {
         if (pw[0].value != pw[1].value) {
-            document.getElementById('alert').style.display = 'block';
+            msg.style.display = 'block';
             return false;
         }
     };
+
+    // Hiding the alert message instead of removing it to the DOM
+    document.getElementById('close').addEventListener('click', function () {
+        msg.style.display = 'none';
+    });
 
     // Adding toggle password visibility
     var toggle_pw = document.getElementsByClassName('toggle-password');
